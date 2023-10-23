@@ -25,7 +25,7 @@ export class FetchApiDataService {
 
   // Making the api call for the user login endpoint
   public userLogin(userDetails: any):Observable<any> {
-    return this.http.post(apiUrl + 'login?', + new URLSearchParams(userDetails), {}).pipe(
+    return this.http.post(apiUrl + 'login',userDetails).pipe(
       catchError(this.handleError)
     )
   }
