@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 //use this to close the dialog on success
 import { MatDialogRef } from '@angular/material/dialog';
@@ -21,7 +22,8 @@ export class UserLoginFormComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class UserLoginFormComponent implements OnInit {
        this.snackBar.open('User Login Successful', 'OK', {
         duration: 2000
        })
+       this.router.navigate(['movies']);
     }, (result) => {
       this.snackBar.open('Sorry, something went wrong','OK', {
         duration: 2000
