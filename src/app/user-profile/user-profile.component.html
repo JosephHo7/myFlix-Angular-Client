@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<div>
+    <div>
+        <div class="info">
+            <h1>Profile</h1>
+            <p>Username: {{user.Username}} </p>
+            <p>Email: {{user.Email}} </p>
+            <p>Birthday: {{user.Birthday | date: 'MM/dd/yyyy' }} </p>
+
+            <h2>Favorite Movies</h2>
+            <div *ngIf="favoriteMovies.length === 0">
+                <p>No Favorites. Add some now!</p>
+            </div>
+        </div>
+        <mat-list>
+            <mat-list-item *ngFor="let movie of favoriteMovies">
+                <img src="{{movie.ImagePath}}" alt="movie image poster">
+                <span>{{movie.Title}} </span>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+    <form>
+        <h1>Update Profile</h1>
+        <mat-form-field>
+            <mat-label> Username</mat-label>
+            <input matInput [(ngModel)]="user.Username" placeholder="Username" type="text" name="Username">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Password</mat-label>
+            <input matInput [(ngModel)]="user.Password" type="password" name="Password" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Email</mat-label>
+            <input matInput [(ngModel)]="user.Email" type="email" name="Email">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Birthday</mat-label>
+            <input matInput [(ngModel)]="user.Birthday" type="date" name="Birthday">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="editUser()" >Update</button>
+
+        <button mat-raised-button color="primary" (click)="deleteUser()"> Delete Account</button>
+    </form>
+</div>

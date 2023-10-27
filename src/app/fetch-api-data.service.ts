@@ -86,8 +86,8 @@ export class FetchApiDataService {
     );
   }
   // Making the api call for the get user endpoint
-  getUser(username: string): Observable<any> {
-    const user = localStorage.getItem('user');
+  getUser(): Observable<any> {
+    const user = localStorage.getItem('username');
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'users/' + user, 
     {headers: new HttpHeaders(
@@ -161,13 +161,37 @@ editUser(updateUser:any): Observable<any> {
   return throwError(() => new Error('user not found'));
 }
 
-  deleteUser(): Observable <any> {
-    const userStr = localStorage.getItem('user');
-    if (userStr) {
-      const user = JSON.parse(userStr);
-      if (user) {
-        const token = localStorage.getItem('token');
-      return this.http.delete(apiUrl + 'users/' + user._id , 
+deleteUser(): Observable <any> {
+  const userStr = localStorage.getItem('user');
+  if (userStr) {
+    const user = JSON.parse(userStr);
+    if (user) {
+      const token = localStorage.getItem('token');
+    return this.http.delete(apiUrl + 'users/' + user._id , 
+    {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + token,
+      })
+    }).pipe(
+      map(this.extractResponseData),
+      catchError(this.handleError)
+        );
+      }
+    }
+    return throwError(() => new Error( 'user not found'))
+  }
+
+deleteFavMovies(movieId: string): Observable<any> {
+  const userStr = localStorage.getItem('user');
+  if (userStr) {
+    const user = JSON.parse(userStr);
+    if (user) {
+      const token = localStorage.getItem('token');
+      const index = user.FavoriteMovies.indexOf(movieId);
+        if(index >= 0) {
+          user.FavoriteMovies.splice(index, 1);
+        }
+      return this.http.delete(apiUrl + `users/${user.Username}/${movieId}`, 
       {headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -175,35 +199,11 @@ editUser(updateUser:any): Observable<any> {
       }).pipe(
         map(this.extractResponseData),
         catchError(this.handleError)
-          );
-        }
-      }
-      return throwError(() => new Error( 'user not found'))
+      );
     }
-
-    deleteFavMovies(movieId: string): Observable<any> {
-      const userStr = localStorage.getItem('user');
-      if (userStr) {
-        const user = JSON.parse(userStr);
-        if (user) {
-          const token = localStorage.getItem('token');
-          const index = user.FavoriteMovies.indexOf(movieId);
-            if(index >= 0) {
-              user.FavoriteMovies.splice(index, 1);
-            }
-          return this.http.delete(apiUrl + `users/${user.Username}/${movieId}`, 
-          {headers: new HttpHeaders(
-            {
-              Authorization: 'Bearer ' + token,
-            })
-          }).pipe(
-            map(this.extractResponseData),
-            catchError(this.handleError)
-          );
-        }
-      }
-      return throwError(() => new Error('user not found'))
-    }
+  }
+  return throwError(() => new Error('user not found'))
+}
 
   // Non-typed response extraction
   private extractResponseData(res: Object): any {
