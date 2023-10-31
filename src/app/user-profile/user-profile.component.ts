@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
 export class UserProfileComponent implements OnInit {
   user: any = {};
 
-  favoriteMovies: any[] = [];
+  FavoriteMovies: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -36,7 +36,7 @@ export class UserProfileComponent implements OnInit {
       const movies = resp
       movies.forEach((movie: any) => {
         if (this.user.FavoriteMovies.includes(movie._id)) {
-          this.favoriteMovies.push(movie)
+          this.FavoriteMovies.push(movie)
         }
       })
     })

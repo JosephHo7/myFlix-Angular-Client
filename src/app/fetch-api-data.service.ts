@@ -205,6 +205,12 @@ deleteFavMovies(movieId: string): Observable<any> {
   return throwError(() => new Error('user not found'))
 }
 
+//checks if the favoite movies array has movieID
+isFavoriteMovie(movieID: string): boolean {
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  return user.FavoriteMovies.indexOf(movieID) >= 0;
+}
+
   // Non-typed response extraction
   private extractResponseData(res: Object): any {
     const body = res;

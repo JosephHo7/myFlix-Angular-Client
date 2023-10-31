@@ -22,7 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatListModule } from '@angular/material/list'; 
+import { MatListModule } from '@angular/material/list';
+import { MovieInfoComponent } from './movie-info/movie-info.component'; 
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent},
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     UserLoginFormComponent,
     WelcomePageComponent,
     UserProfileComponent,
-    NavbarComponent
+    NavbarComponent,
+    MovieInfoComponent
   ],
   imports: [
     BrowserModule,

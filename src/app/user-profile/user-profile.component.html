@@ -8,15 +8,17 @@
             <p>Birthday: {{user.Birthday | date: 'MM/dd/yyyy' }} </p>
 
             <h2>Favorite Movies</h2>
-            <div *ngIf="favoriteMovies.length === 0">
+            <div *ngIf="FavoriteMovies.length === 0">
                 <p>No Favorites. Add some now!</p>
             </div>
         </div>
         <mat-list>
-            <mat-list-item *ngFor="let movie of favoriteMovies">
-                <img src="{{movie.ImagePath}}" alt="movie image poster">
-                <span>{{movie.Title}} </span>
-            </mat-list-item>
+            <div class="fav-movie-div">
+                <mat-list-item *ngFor="let movie of FavoriteMovies" class="list-item">
+                    <img matListItemAvatar src="{{movie.ImagePath}}" alt="movie image poster" class="fav-movies">
+                    <span matListItemTitle>{{movie.Title}} </span>
+                </mat-list-item>
+            </div>
         </mat-list>
     </div>
 

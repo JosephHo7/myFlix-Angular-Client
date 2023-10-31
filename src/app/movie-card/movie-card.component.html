@@ -11,22 +11,36 @@
                 <button
                     mat-button
                     color="primary"
+                    (click)="getGenre(movie.Genre.Name, movie.Genre.Description)"
                 >
                     Genre
                 </button>
                 <button
-                mat-button
-                color="primary"
-            >
-                Director
-            </button>
-            <button
-                mat-button
-                color="primary"
-            >
+                    mat-button
+                    color="primary"
+                    (click)="getDirector(movie.Director.Name, movie.Director.Bio)"
+                >
+                    Director
+                </button>
+                <button
+                    mat-button
+                    color="primary"
+                    (click)="getDetails(movie.Description)"
+                >
                 Synopsis
-            </button>
-            <mat-icon>favorite_border</mat-icon>
+                </button>
+                <button
+                    *ngIf="!isFavorite(movie._id)"
+                    mat-button
+                    (click)="addFavorite(movie._id)"
+                >
+                    <mat-icon>favorite_border</mat-icon>
+                </button>
+
+                <button *ngIf="isFavorite(movie._id)" mat-icon-button (click)="removeFavorite(movie._id)"
+                matTooltip="Remove from favorites">
+                <mat-icon>favorite</mat-icon>
+                </button>
         </mat-card-actions>
     </mat-card>
 </div>
