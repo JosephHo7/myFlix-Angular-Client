@@ -127,7 +127,9 @@ export class FetchApiDataService {
 
       const token = localStorage.getItem('token');
 
-      return this.http.put(apiUrl + `users/${user.Username}/${movieId}`, {}, {
+      console.log(apiUrl + `users/${user.Username}/` + 'movies/' + `${movieId}`)
+
+      return this.http.post(apiUrl + `users/${user.Username}/` + 'movies/' + `${movieId}`, {}, {
         headers: new HttpHeaders({
           Authorization: 'Bearer ' + token,
         }),
@@ -191,7 +193,7 @@ deleteFavMovies(movieId: string): Observable<any> {
         if(index >= 0) {
           user.FavoriteMovies.splice(index, 1);
         }
-      return this.http.delete(apiUrl + `users/${user.Username}/${movieId}`, 
+      return this.http.delete(apiUrl + `users/${user.Username}/` + 'movies/' + `${movieId}`, 
       {headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
