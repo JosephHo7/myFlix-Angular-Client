@@ -116,6 +116,8 @@ export class FetchApiDataService {
   // Making the api call for the add movie to fav list endpoint
   addFavMovies(movieId: string): Observable<any> {
   const userStr = localStorage.getItem('user');
+
+  console.log('add movie to favorites: ' + movieId);
   if (userStr) {
     const user = JSON.parse(userStr);
     if (user) {
@@ -126,8 +128,6 @@ export class FetchApiDataService {
       localStorage.setItem('user', JSON.stringify(user));
 
       const token = localStorage.getItem('token');
-
-      console.log(apiUrl + `users/${user.Username}/` + 'movies/' + `${movieId}`)
 
       return this.http.post(apiUrl + `users/${user.Username}/` + 'movies/' + `${movieId}`, {}, {
         headers: new HttpHeaders({
