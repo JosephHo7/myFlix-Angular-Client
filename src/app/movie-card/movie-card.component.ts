@@ -14,15 +14,23 @@ export class MovieCardComponent {
   user: any = {};
   favoritesMap: { [movieId: string]: boolean} = {};
 
+  mybreakpoint: number;
+
   constructor(
     public fetchApiData: FetchApiDataService,
     public snackBar: MatSnackBar,
     public dialog: MatDialog
-    ) {}
+    ) {
+      this.mybreakpoint = (window.innerWidth <=800)?2:4;
+    }
 
   ngOnInit(): void {
     this.getMovies();
     console.log('inital favoritesMap: ', this.favoritesMap);
+  }
+
+  handleSize(event: any) {
+    this.mybreakpoint = (event.target.innerWidth <800) ? 2:4;
   }
 
   getMovies(): void {
@@ -85,12 +93,12 @@ export class MovieCardComponent {
       console.log('movie removed from favorites: ', id);
       console.log('favoritesMap before removal', this.favoritesMap);
       this.favoritesMap[id] = false;
-      console.log('favoritesMap after removal: ', this.favoritesMap);
 
       if (localStorage.getItem('user') && localStorage.getItem('token')) {
       this.user = JSON.parse(localStorage.getItem('user')!)
       this.user.FavoriteMovies = this.user.FavoriteMovies.filter((movieId: string) => movieId !== id);
       }
+      console.log('favoritesMap after removal: ', this.favoritesMap);
       this.snackBar.open('removed from favorites', 'OK', {
         duration: 2000
       })

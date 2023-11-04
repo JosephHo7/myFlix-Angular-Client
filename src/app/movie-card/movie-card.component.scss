@@ -1,0 +1,50 @@
+
+.tile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 5px;
+  }
+
+  .card {
+    display: flex;
+    flex-shrink: 2;
+    border-style: solid;
+    border-width: 2px;
+    // background-color: greenyellow;
+    padding: 0;
+  }
+
+  .card-header {
+    font-size: 16px;
+    font-size: 2vw;
+    padding: 0px;
+    // background-color: red;
+  }
+  
+  .tile-image {
+    max-width: 100%;
+    max-height: 100%;
+    // width: 50%;
+    height: 60%;
+  }
+
+  .card-actions{
+    // background-color: blue;
+    display: flex;
+    flex-wrap: flex;
+  }
+
+  .card-actions button {
+    font-size: 12px;
+    font-size: 1vw;
+  }
+
+  @media screen and (max-width: 800px ){
+    .card-actions button {
+        font-size: 16px;
+        font-size: 2vw;
+    }
+  }
