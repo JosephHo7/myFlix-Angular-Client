@@ -44,6 +44,13 @@ export class FetchApiDataService {
     );
   }
 
+  // funciton to update user data from backend
+  // updateUserData(): void {
+  //   const user = this.getUser().subscribe((userData: any) => {
+  //     localStorage.setItem('user', JSON.stringify(userData));
+  //   });
+  // }
+
   // Making the api call for the get one movie endpoint
   getOneMovies(Title: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -193,6 +200,7 @@ deleteFavMovies(movieId: string): Observable<any> {
         if(index >= 0) {
           user.FavoriteMovies.splice(index, 1);
         }
+      localStorage.setItem('user', JSON.stringify(user));
       return this.http.delete(apiUrl + `users/${user.Username}/` + 'movies/' + `${movieId}`, 
       {headers: new HttpHeaders(
         {
