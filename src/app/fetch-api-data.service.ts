@@ -11,7 +11,11 @@ import { map } from 'rxjs/operators';
  * information about genres, directors, and movie summaries. The endpoints also allow for updating 
  * and deleting existing user profiles
 */
-const apiUrl = 'https://movieapi-lcrt.onrender.com/';
+// use for RENDER server
+// const apiUrl = 'https://movieapi-lcrt.onrender.com/';
+
+// use for AWS EC2 server
+const apiUrl = 'http://ec2-34-195-61-150.compute-1.amazonaws.com/';
 
 @Injectable({
   providedIn: 'root'
