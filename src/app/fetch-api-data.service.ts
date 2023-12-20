@@ -15,7 +15,7 @@ import { map } from 'rxjs/operators';
 // const apiUrl = 'https://movieapi-lcrt.onrender.com/';
 
 // use for AWS EC2 server
-const apiUrl = 'http://ec2-34-195-61-150.compute-1.amazonaws.com/';
+const apiUrl = 'http://34.195.61.150';
 
 @Injectable({
   providedIn: 'root'
